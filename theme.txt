@@ -1,7 +1,7 @@
 Theme color
-Dark: #626D58
-Neutral: #e6e18f
-Light: #fefcad
+Dark: 
+Neutral: 
+Light: 
 
 Font
 Main: Poetsen One

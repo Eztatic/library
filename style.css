@@ -9,11 +9,18 @@
 }
 
 body {
-      height: 99vh;
+      height: 100vh;
       background: url(./background.svg);
 }
 
-.card {
+header {
+      height: 180px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+}
+
+.card, .add-card {
       background-color: #fff;
       width: 320px;
       height: 180px;
@@ -49,21 +56,37 @@ div > label.toggle-btn {
 }
 
 input:checked + .toggle-btn {
-      background-color: #626D58;
+      background-color: #4658ff;
 }
 
 input:checked + .toggle-btn::before {
       transform: translateX(18px);
 }
 
-input {
+input[id^='readCheck'] {
       display: none;
 }
 
-.card > div {
-      margin-top: 32px;
+.small-icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      cursor: pointer;
+}
+
+div.card-icons > img:hover {
+      background-color: #cacaca;
+}
+
+.card > div.clickables > div:last-child {
       display: flex;
       justify-content: flex-end;
+}
+
+div.clickables {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
 }
 
 .cards-container {
@@ -74,3 +97,19 @@ input {
       justify-content: center;
 }
 
+.add-card {
+      background-color: rgba(202, 202, 202, 0.521);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+}
+
+.add-card:hover {
+      background-color: #ffffff;
+}
+
+img[alt="plus icon"] {
+      width: 48px;
+      height: 48px;
+}
