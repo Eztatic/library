@@ -1,7 +1,7 @@
 Theme color
 Dark: #626D58
-Neutral: #626D58
-Light: #626D58
+Neutral: #e6e18f
+Light: #fefcad
 
 Font
 Main: Poetsen One
@@ -11,5 +11,6 @@ background: <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="h
 
 resources:
 https://bgjar.com/wave
+https://bgjar.com/shiny-overlay
 https://fonts.google.com/selection/embed
 https://coolors.co/626d58-e6e18f-fefcad
