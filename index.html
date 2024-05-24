@@ -17,41 +17,41 @@
       <div class="main-content">
             <div class="cards-container">
                   <div class="card">
-                        <h2 contentEditable="true">The Book Title</h2>
-                        <p>By: <span contenteditable="true">Author</span></p>
-                        <p>No. of pages: <span contenteditable="true">19</span></p>
+                        <h2 contentEditable="true">Insert Book Title</h2>
+                        <p>By: <span contenteditable="true">Insert Author</span></p>
+                        <p>No. of pages: <span>0</span></p>
                         <div class="clickables">
                               <div class="card-icons">
-                                    <img class="small-icon" src="./edit.svg" alt="edit icon">
-                                    <img class="small-icon" src="./delete.svg" alt="delete icon">
+                                    <img class="small-icon edit" src="./edit.svg" alt="edit icon">
+                                    <img class="small-icon delete" src="./delete.svg" alt="delete icon">
                               </div>
-                              <div>
+                              <div class="toggle-btn-cont">
                                     <p>Read Status &nbsp;&nbsp;</p>
                                     <input type="checkbox" id="readCheck">
                                     <label for="readCheck" class="toggle-btn"></label>
                               </div>
                         </div>
                   </div>
-                  <!-- <div class="card">
-                        <h2>Book Title</h2>
-                        <p>Author</p>
-                        <p>No. of pages: <span>19</span></p>
-                        <div >
-                              <p>Read Status &nbsp;&nbsp;</p>
-                              <input type="checkbox" id="readCheck1">
-                              <label for="readCheck1" class="toggle-btn"></label>
+                  <div class="new-card">
+                        <input type="text" placeholder="Enter Book Title" contentEditable="false" id="asdf">
+                        <p>By: 
+                              <input type="text" placeholder="Author Name">
+                        </p>
+                        <p>No. of pages: 
+                              <input id="pages" type="number" placeholder="0">
+                        </p>
+                        <div class="clickables">
+                              <div class="card-icons">
+                                    <img class="small-icon save" src="./save.svg" alt="edit icon">
+                                    <img class="small-icon delete" src="./delete.svg" alt="delete icon">
+                              </div>
+                              <div class="toggle-btn-cont">
+                                    <p>Read Status &nbsp;&nbsp;</p>
+                                    <input type="checkbox" id="readCheck1">
+                                    <label for="readCheck1" class="toggle-btn"></label>
+                              </div>
                         </div>
                   </div>
-                  <div class="card">
-                        <h2>Book Title</h2>
-                        <p>Author</p>
-                        <p>No. of pages: <span>19</span></p>
-                        <div >
-                              <p>Read Status &nbsp;&nbsp;</p>
-                              <input type="checkbox" id="readCheck2">
-                              <label for="readCheck2" class="toggle-btn"></label>
-                        </div>
-                  </div> -->
                   <div class="add-card">
                         <img src="./plus-circle.svg" alt="plus icon">
                   </div>

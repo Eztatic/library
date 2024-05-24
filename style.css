@@ -20,7 +20,7 @@ header {
       align-items: center;
 }
 
-.card, .add-card {
+.card, .add-card, .new-card {
       background-color: #fff;
       width: 320px;
       height: 180px;
@@ -29,7 +29,7 @@ header {
       border-radius: 8px;
 }
 
-.card > *:not(div){
+.card > *:not(div), .new-card > *:not(div){
       margin-bottom: 6px;
 }
 
@@ -78,7 +78,7 @@ div.card-icons > img:hover {
       background-color: #cacaca;
 }
 
-.card > div.clickables > div:last-child {
+.toggle-btn-cont {
       display: flex;
       justify-content: flex-end;
 }
@@ -113,3 +113,22 @@ img[alt="plus icon"] {
       width: 48px;
       height: 48px;
 }
+
+.new-card > input[type="text"]:first-child {
+      font-size: 1.5em;
+      width: 268px;
+      height: 29px;
+      text-overflow: ellipsis;
+}
+
+.new-card > p:nth-child(2) > input{
+      font-size: 1em;
+      width: 240px;
+}
+
+.new-card > p:nth-child(3) > input {
+      width: 70px;
+      font-size: 1em;
+}
+
+
