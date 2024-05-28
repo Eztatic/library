@@ -1,7 +1,0 @@
-task for making personal library system
-1. add new book(card) function - Done
-2. able to edit card function
-3. able to save card after edit function
-4. delete card function
-5. able to save user input
-

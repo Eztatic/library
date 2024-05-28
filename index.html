@@ -11,50 +11,51 @@
       <script src="./script.js" defer async></script>
 </head>
 <body>
+      <dialog>
+            <h2>Add New Book</h2>
+            <form>
+                  <label for="bookTitleInput">Book Title:</label>
+                  <input type="text" 
+                         id="bookTitleInput"  
+                         placeholder="Enter Book Title">
+                  <label for="authorNameInput">Author:</label>
+                  <input type="text" 
+                         id="authorNameInput"
+                         placeholder="Author Name">
+                  <label for="pages">No. of pages:</label>
+                  <input type="number"  
+                         id="pages" 
+                         placeholder="0">
+                  <div class="toggle-btn-cont">
+                        <label for="readCheck">Read Status:&nbsp;</label>
+                        <input type="checkbox" id="readCheck">
+                        <label for="readCheck" class="toggle-btn"></label>
+                  </div>
+                  <div>
+                        <button value="default" id="addBtn">Add</button>
+                        <button value="cancel" formmethod="dialog" id="cancelBtn">Cancel</button>
+                  </div>
+            </form>
+      </dialog>
       <header>
             <h1>Library</h1>
       </header>
       <div class="main-content">
             <div class="cards-container">
                   <div class="card">
-                        <h2>Insert Book Title</h2>
-                        <p>By: <span>Insert Author</span></p>
-                        <p>No. of pages: <span>0</span></p>
+                        <p>The Book Title</p>
+                        <p>Author name/s</p>
+                        <p>Page </p>
                         <div class="clickables">
-                              <div class="card-icons">
-                                    <img class="small-icon edit" src="./edit.svg" alt="edit icon">
-                                    <img class="small-icon delete" src="./delete.svg" alt="delete icon">
-                              </div>
-                              <div class="toggle-btn-cont">
-                                    <p>Read Status &nbsp;&nbsp;</p>
-                                    <input type="checkbox" id="readCheck">
-                                    <label for="readCheck" class="toggle-btn"></label>
+                              <div class="buttons">
+                                    <button id="save">Edit&nbsp;&nbsp;</button>
+                                    <button id="delete">Delete</button>
                               </div>
                         </div>
                   </div>
-                  <div class="new-card">
-                        <input type="text" placeholder="Enter Book Title" contentEditable="false" id="bookTitleInput">
-                        <p>By: 
-                              <input type="text" placeholder="Author Name" id="authorNameInput">
-                        </p>
-                        <p>No. of pages: 
-                              <input id="pages" type="number" placeholder="0">
-                        </p>
-                        <div class="clickables">
-                              <div class="card-icons">
-                                    <img class="small-icon save" src="./save.svg" alt="edit icon">
-                                    <img class="small-icon delete" src="./delete.svg" alt="delete icon">
-                              </div>
-                              <div class="toggle-btn-cont">
-                                    <p>Read Status &nbsp;&nbsp;</p>
-                                    <input type="checkbox" id="readCheck1">
-                                    <label for="readCheck1" class="toggle-btn"></label>
-                              </div>
-                        </div>
-                  </div>
-                  <div class="add-card">
+                  <button class="add-card">
                         <img src="./plus-circle.svg" alt="plus icon">
-                  </div>
+                  </button>
             </div>
       </div>
 </body>

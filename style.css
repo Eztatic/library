@@ -20,7 +20,9 @@ header {
       align-items: center;
 }
 
-.card, .add-card, .new-card {
+/* card styles */
+
+.card, .add-card{
       background-color: #fff;
       width: 320px;
       height: 180px;
@@ -29,11 +31,53 @@ header {
       border-radius: 8px;
 }
 
-.card > *:not(div), .new-card > *:not(div){
+.card > *:not(div){
       margin-bottom: 6px;
 }
 
-div > label.toggle-btn {
+div.clickables {
+      margin-top: 32px;
+      display: flex;
+      justify-content: space-between;
+}
+
+.buttons > button{
+      background-color: none;
+      border: none;
+      font-size: 1em;
+      cursor: pointer;
+}
+
+.cards-container {
+      width: 100%;
+      gap: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, 320px);
+      justify-content: center;
+}
+
+/* add card button */
+
+button.add-card {
+      background-color: rgba(202, 202, 202, 0.521);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+}
+
+button.add-card:hover {
+      background-color: #ffffff;
+}
+
+img[alt="plus icon"] {
+      width: 48px;
+      height: 48px;
+}
+
+/* toggle button */
+
+label.toggle-btn {
       background-color: #cacaca;
       width: 36px;
       height: 18px;
@@ -66,69 +110,53 @@ input:checked + .toggle-btn::before {
 input[id^='readCheck'] {
       display: none;
 }
+ 
+/* dialog styles */
 
-.small-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 4px;
-      cursor: pointer;
+dialog {
+      margin: auto;
+      padding: 20px;
+      width: 600px;
 }
 
-div.card-icons > img:hover {
-      background-color: #cacaca;
+dialog > h2 {
+      text-align: center;
 }
 
-.toggle-btn-cont {
-      display: flex;
-      justify-content: flex-end;
+form label {
+      font-size: 1.4rem;
+      display: block;
 }
 
-div.clickables {
-      margin-top: 32px;
-      display: flex;
-      justify-content: space-between;
-}
-
-.cards-container {
+form > input {
+      font-size: 1rem;
       width: 100%;
-      gap: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 320px);
-      justify-content: center;
+      padding: 4px;
+      margin: 4px 0;
 }
 
-.add-card {
-      background-color: rgba(202, 202, 202, 0.521);
+form > input[type="number"] {
+      width: 20%;
+}
+
+dialog > form > div.toggle-btn-cont {
+      height: 26px;
       display: flex;
-      justify-content: center;
       align-items: center;
-      cursor: pointer;
 }
 
-.add-card:hover {
-      background-color: #ffffff;
+dialog button {
+      width: 74px;
+      height: 26px;
 }
 
-img[alt="plus icon"] {
-      width: 48px;
-      height: 48px;
+form > div:last-child{
+      margin-top: 16px;
 }
 
-.new-card > input[type="text"]:first-child {
-      font-size: 1.5em;
-      width: 268px;
-      height: 29px;
-      text-overflow: ellipsis;
+form > div > button:first-of-type {
+      margin-right: 8px;
 }
 
-.new-card > p:nth-child(2) > input{
-      font-size: 1em;
-      width: 240px;
-}
-
-.new-card > p:nth-child(3) > input {
-      width: 70px;
-      font-size: 1em;
-}
 
 
