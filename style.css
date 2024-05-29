@@ -35,10 +35,10 @@ header {
       margin-bottom: 6px;
 }
 
-div.clickables {
-      margin-top: 16px;
+div.buttons{
+      margin-top: 22px;
       display: flex;
-      justify-content: space-between;
+      gap: 10px;
 }
 
 .buttons > button{

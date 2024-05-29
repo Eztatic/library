@@ -18,26 +18,73 @@ function setMultAttrs(element, attrs) {
 }
 
 const container = document.querySelector('.cards-container');
-const addCard = document.querySelector('.add-card');
+const addCardBtn = document.querySelector('.add-card');
 const dialog = document.querySelector('dialog');
 const addBtn = document.querySelector('#addBtn')
 const cancelBtn = document.querySelector('#cancelBtn');
+const newCard = document.createElement('div');
+const form = document.querySelector('form');
 
-const bookTitleInput = document.querySelector('#bookTitleInput').value;
-const authorNameInput = document.querySelector('#authorNameInput').value;
-const pageNum = document.querySelector('#pages').value;
-const readStatus = document.querySelector('#readCheck').checked;
+const deleteBtn = document.createElement('div');
 
-addCard.addEventListener("click", () => {
-      // const add = newCard.cloneNode(true);
-      // container.insertBefore(add, addCard);
+
+
+
+addCardBtn.addEventListener("click", () => {
       dialog.showModal();
 });
+
+addBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+
+      if (!form.checkValidity()) {
+            form.reportValidity(); 
+            return; 
+      }
+      const bookTitleInput = document.querySelector('#bookTitleInput').value;
+      const authorNameInput = document.querySelector('#authorNameInput').value;
+      const pageNum = document.querySelector('#pages').value;
+      let readStatus = document.querySelector('#readCheck');
+      readStatus.checked === true ? readStatus = 'Have Read' 
+                                  : readStatus = 'Not Read';
+      addBookToLibrary(bookTitleInput, authorNameInput, pageNum, readStatus);
+      dialog.close();
+      displayCard();
+});   
 
 cancelBtn.addEventListener("click", () => {
       dialog.close();
       console.log(readStatus);
 });
+
+deleteBtn.addEventListener("click", () => {
+      
+});
+
+const displayCard = () => {
+      const obj = library[library.length-1];
+      (() => {
+            newCard.innerHTML = `
+                  <div class="card">
+                        <p>${obj.title}</p>
+                        <p>By: ${obj.author}</p>
+                        <p>No. of Pages: ${obj.pageCount}</p>
+                        <p>Status: ${obj.readStatus}</p>
+                        <div class="buttons">
+                              <button id="save">Edit</button>
+                              <button id="delete">Delete</button>
+                        </div>
+                  </div>
+            `;
+            container.insertBefore(newCard.cloneNode(true), addCardBtn);
+      })(obj);
+};
+
+
+
+
+
+
 
 
 

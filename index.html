@@ -17,23 +17,26 @@
                   <label for="bookTitleInput">Book Title:</label>
                   <input type="text" 
                          id="bookTitleInput"  
-                         placeholder="Enter Book Title">
+                         placeholder="Enter Book Title"
+                         required>
                   <label for="authorNameInput">Author:</label>
                   <input type="text" 
                          id="authorNameInput"
-                         placeholder="Author Name">
+                         placeholder="Author Name"
+                         required>
                   <label for="pages">No. of pages:</label>
                   <input type="number"  
                          id="pages" 
-                         placeholder="0">
+                         placeholder="0"
+                         required>
                   <div class="toggle-btn-cont">
                         <label for="readCheck">Read Status:&nbsp;</label>
                         <input type="checkbox" id="readCheck">
                         <label for="readCheck" class="toggle-btn"></label>
                   </div>
                   <div>
-                        <button value="default" id="addBtn">Add</button>
-                        <button value="cancel" formmethod="dialog" id="cancelBtn">Cancel</button>
+                        <button type="submit" value="default" id="addBtn">Add</button>
+                        <button value="cancel" id="cancelBtn">Cancel</button>
                   </div>
             </form>
       </dialog>
@@ -42,18 +45,18 @@
       </header>
       <div class="main-content">
             <div class="cards-container">
-                  <div class="card">
+                  <!-- <div class="card">
                         <p>The Book Title</p>
                         <p>By: Author name/s</p>
                         <p>No. of Pages: 0</p>
                         <p>Status: Already Read</p>
                         <div class="clickables">
                               <div class="buttons">
-                                    <button id="save">Edit&nbsp;&nbsp;</button>
+                                    <button id="save">Edit</button>
                                     <button id="delete">Delete</button>
                               </div>
                         </div>
-                  </div>
+                  </div> -->
                   <button class="add-card">
                         <img src="./plus-circle.svg" alt="plus icon">
                   </button>
