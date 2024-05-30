@@ -25,11 +25,6 @@ const cancelBtn = document.querySelector('#cancelBtn');
 const newCard = document.createElement('div');
 const form = document.querySelector('form');
 
-const deleteBtn = document.createElement('div');
-
-
-
-
 addCardBtn.addEventListener("click", () => {
       dialog.showModal();
 });
@@ -57,8 +52,24 @@ cancelBtn.addEventListener("click", () => {
       console.log(readStatus);
 });
 
-deleteBtn.addEventListener("click", () => {
-      
+let deleteThis = document.querySelector('.cards-container');
+
+deleteThis.addEventListener("click", (e) => {
+      let target = e.target;
+      if(target.id === 'delete') {
+            // target.parentNode.parentNode.remove();
+            const getTitle = target.parentNode.parentNode.querySelector('p').innerText;
+            const getIndex = library.findIndex((obj) => {
+                  obj.title === getTitle;
+                  console.log(typeof obj.title);
+            });
+            console.log(getIndex);
+            // library.filter((obj) => {
+            //       if(obj['title'] === getTitle) {
+            //             library.pop();
+            //       }
+            // });
+      }
 });
 
 const displayCard = () => {
@@ -71,7 +82,7 @@ const displayCard = () => {
                         <p>No. of Pages: ${obj.pageCount}</p>
                         <p>Status: ${obj.readStatus}</p>
                         <div class="buttons">
-                              <button id="save">Edit</button>
+                              <button id="edit">Edit</button>
                               <button id="delete">Delete</button>
                         </div>
                   </div>
@@ -79,6 +90,9 @@ const displayCard = () => {
             container.insertBefore(newCard.cloneNode(true), addCardBtn);
       })(obj);
 };
+
+
+
 
 
 
