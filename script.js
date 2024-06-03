@@ -19,14 +19,17 @@ function setMultAttrs(element, attrs) {
 
 const container = document.querySelector('.cards-container');
 const addCardBtn = document.querySelector('.add-card');
-const dialog = document.querySelector('dialog');
-const addBtn = document.querySelector('#addBtn')
+const addDialog = document.querySelector('dialog.addDialog');
+const editDialog = document.querySelector('dialog.editDialog');
+const addBtn = document.querySelector('#addBtn');
+const editBtn = document.querySelector('#editBtn');
 const cancelBtn = document.querySelector('#cancelBtn');
 const newCard = document.createElement('div');
 const form = document.querySelector('form');
+const editForm = document.querySelector('.editDialog');
 
 addCardBtn.addEventListener("click", () => {
-      dialog.showModal();
+      addDialog.showModal();
 });
 
 addBtn.addEventListener("click", (e) => {
@@ -43,26 +46,59 @@ addBtn.addEventListener("click", (e) => {
       readStatus.checked === true ? readStatus = 'Have Read' 
                                   : readStatus = 'Not Read';
       addBookToLibrary(bookTitleInput, authorNameInput, pageNum, readStatus);
-      dialog.close();
+      addDialog.close();
       displayCard();
 });   
 
 cancelBtn.addEventListener("click", () => {
-      dialog.close();
-      console.log(readStatus);
+      addDialog.close();
 });
 
-let deleteThis = document.querySelector('.cards-container');
+let selectCard = document.querySelector('.cards-container');
 
-deleteThis.addEventListener("click", (e) => {
+selectCard.addEventListener("click", (e) => {
+      e.preventDefault();
       let target = e.target;
+
       if(target.id === 'delete') {
-            const getTitle = target.parentNode.parentNode.querySelector('p').innerText;
+            const currTitle = target.parentNode.parentNode.querySelector('p').innerText;
             library.map((obj) => {
-                  if(obj.title === getTitle) {
+                  if(obj.title === currTitle) {
                         target.parentNode.parentNode.remove();
                         library.splice(library.indexOf(obj), 1);
                   };
+            });
+      }
+
+      if(target.id === 'edit') {
+            editDialog.showModal();
+
+            let currTitle = target.parentNode.parentNode.querySelector('p');
+            let currAuthor = target.parentNode.parentNode.querySelector('p:nth-child(2)');
+            let currPages = target.parentNode.parentNode.querySelector('p:nth-child(3)');
+            
+            library.map((obj) => {
+                  if(obj.title === currTitle.innerText) {
+                        editDialog.querySelector('#editBookTitle').value = obj.title;
+                        editDialog.querySelector('#editAuthorName').value = obj.author;
+                        editDialog.querySelector('#editNumPages').value = obj.pageCount;
+                  };
+            });
+
+            editForm.addEventListener("click", (e) => {
+                  e.preventDefault();
+                  library.map((obj) => {
+                        if(obj.title === currTitle.innerText) {
+                              obj.title = editDialog.querySelector('#editBookTitle').value;
+                              obj.author = editDialog.querySelector('#editAuthorName').value;
+                              obj.pageCount = editDialog.querySelector('#editNumPages').value;
+                              currTitle.innerText = obj.title;
+                              currAuthor.innerText = `By: ${obj.author}`;
+                              currPages.innerText = `No. of Pages: ${obj.pageCount}`;
+                        };  
+                  });
+
+                  editDialog.close();
             });
       }
 });
