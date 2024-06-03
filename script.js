@@ -57,18 +57,13 @@ let deleteThis = document.querySelector('.cards-container');
 deleteThis.addEventListener("click", (e) => {
       let target = e.target;
       if(target.id === 'delete') {
-            // target.parentNode.parentNode.remove();
             const getTitle = target.parentNode.parentNode.querySelector('p').innerText;
-            const getIndex = library.findIndex((obj) => {
-                  obj.title === getTitle;
-                  console.log(typeof obj.title);
+            library.map((obj) => {
+                  if(obj.title === getTitle) {
+                        target.parentNode.parentNode.remove();
+                        library.splice(library.indexOf(obj), 1);
+                  };
             });
-            console.log(getIndex);
-            // library.filter((obj) => {
-            //       if(obj['title'] === getTitle) {
-            //             library.pop();
-            //       }
-            // });
       }
 });
 
