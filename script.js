@@ -26,7 +26,8 @@ const editBtn = document.querySelector('#editBtn');
 const cancelBtn = document.querySelector('#cancelBtn');
 const newCard = document.createElement('div');
 const form = document.querySelector('form');
-const editForm = document.querySelector('.editDialog');
+const editForm = document.querySelector('#editForm');
+let selectCard = document.querySelector('.cards-container');
 
 addCardBtn.addEventListener("click", () => {
       addDialog.showModal();
@@ -53,8 +54,6 @@ addBtn.addEventListener("click", (e) => {
 cancelBtn.addEventListener("click", () => {
       addDialog.close();
 });
-
-let selectCard = document.querySelector('.cards-container');
 
 selectCard.addEventListener("click", (e) => {
       e.preventDefault();
@@ -85,8 +84,12 @@ selectCard.addEventListener("click", (e) => {
                   };
             });
 
-            editForm.addEventListener("click", (e) => {
+            editDialog.addEventListener("click", (e) => {
                   e.preventDefault();
+                  if (!editForm.checkValidity()) {
+                        editForm.reportValidity(); 
+                        return; 
+                  }
                   library.map((obj) => {
                         if(obj.title === currTitle.innerText) {
                               obj.title = editDialog.querySelector('#editBookTitle').value;
@@ -98,6 +101,11 @@ selectCard.addEventListener("click", (e) => {
                         };  
                   });
 
+                  editDialog.close();
+            });
+
+            editForm.querySelector('#cancelBtn').addEventListener("click", (e) => {
+                  e.preventDefault();
                   editDialog.close();
             });
       }
@@ -121,18 +129,6 @@ const displayCard = () => {
             container.insertBefore(newCard.cloneNode(true), addCardBtn);
       })(obj);
 };
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

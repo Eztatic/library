@@ -36,13 +36,13 @@
                   </div>
                   <div>
                         <button type="submit" id="addBtn">Add</button>
-                        <button id="cancelBtn">Cancel</button>
+                        <button type="button" id="cancelBtn">Cancel</button>
                   </div>
             </form>
       </dialog>
       <dialog class="editDialog">
             <h2>Edit Book</h2>
-            <form>
+            <form id="editForm">
                   <label for="editBookTitle">Book Title:</label>
                   <input type="text" 
                          id="editBookTitle"  
@@ -60,7 +60,7 @@
                          required>
                   <div>
                         <button type="submit" id="editBtn">Edit</button>
-                        <button type="button" id="cancelBtn">Cancel</button>
+                        <button type="reset" id="cancelBtn">Cancel</button>
                   </div>
             </form>
       </dialog>
