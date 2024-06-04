@@ -37,15 +37,19 @@ header {
 
 div.buttons{
       margin-top: 22px;
-      display: flex;
+      display: grid;
+      grid-auto-flow: column;
+      grid-template-columns: 1fr 1fr 4fr;
       gap: 10px;
 }
 
 .buttons > button{
       background-color: none;
+      background: none;
       border: none;
       font-size: 1em;
       cursor: pointer;
+      justify-self: start;
 }
 
 .cards-container {
@@ -109,6 +113,12 @@ input:checked + .toggle-btn::before {
 
 input[id^='readCheck'] {
       display: none;
+}
+
+/* toggle button in card */
+
+.toggle-btn-cont {
+      justify-self: end;
 }
  
 /* dialog styles */

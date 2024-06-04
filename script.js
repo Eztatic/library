@@ -47,17 +47,20 @@ addBtn.addEventListener("click", (e) => {
       readStatus.checked === true ? readStatus = 'Have Read' 
                                   : readStatus = 'Not Read';
       addBookToLibrary(bookTitleInput, authorNameInput, pageNum, readStatus);
+      form.reset();
       addDialog.close();
       displayCard();
 });   
 
 cancelBtn.addEventListener("click", () => {
+      form.reset();
       addDialog.close();
 });
 
 selectCard.addEventListener("click", (e) => {
       e.preventDefault();
       let target = e.target;
+      let currTitle = target.parentNode.parentNode.querySelector('p');
 
       if(target.id === 'delete') {
             const currTitle = target.parentNode.parentNode.querySelector('p').innerText;
@@ -72,7 +75,7 @@ selectCard.addEventListener("click", (e) => {
       if(target.id === 'edit') {
             editDialog.showModal();
 
-            let currTitle = target.parentNode.parentNode.querySelector('p');
+            // let currTitle = target.parentNode.parentNode.querySelector('p');
             let currAuthor = target.parentNode.parentNode.querySelector('p:nth-child(2)');
             let currPages = target.parentNode.parentNode.querySelector('p:nth-child(3)');
             
@@ -106,8 +109,26 @@ selectCard.addEventListener("click", (e) => {
 
             editForm.querySelector('#cancelBtn').addEventListener("click", (e) => {
                   e.preventDefault();
+                  editForm.reset();
                   editDialog.close();
             });
+      }
+
+      if(target.id === 'toggle-btn' || target.id === 'toggle-btn-label') {
+            let checkBox = selectCard.querySelector('#readCheck');
+            // let readStatus1 = document.querySelector('#readCheck');
+            // readStatus1.checked === true ? readStatus = 'Have Read' 
+            //                             : readStatus = 'Not Read';
+            // library.map((obj) => {
+            //       if(obj.title === currTitle.innerText) {
+            //             obj.readStatus1 = 
+            //       };
+            // });
+            if(checkBox.checked){
+                  checkBox.checked = false;
+            }else {
+                  checkBox.checked = true;
+            };
       }
 });
 
@@ -123,6 +144,11 @@ const displayCard = () => {
                         <div class="buttons">
                               <button id="edit">Edit</button>
                               <button id="delete">Delete</button>
+                              <div class="toggle-btn-cont">
+                                    <label for="readCheck" id="toggle-btn-label">Read Status:&nbsp;</label>
+                                    <input type="checkbox" id="readCheck">
+                                    <label for="readCheck" class="toggle-btn" id="toggle-btn"></label>
+                              </div>
                         </div>
                   </div>
             `;
