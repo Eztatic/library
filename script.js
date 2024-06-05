@@ -116,19 +116,24 @@ selectCard.addEventListener("click", (e) => {
 
       if(target.id === 'toggle-btn' || target.id === 'toggle-btn-label') {
             let checkBox = selectCard.querySelector('#readCheck');
-            // let readStatus1 = document.querySelector('#readCheck');
-            // readStatus1.checked === true ? readStatus = 'Have Read' 
-            //                             : readStatus = 'Not Read';
-            // library.map((obj) => {
-            //       if(obj.title === currTitle.innerText) {
-            //             obj.readStatus1 = 
-            //       };
-            // });
+            // let readStatus1 = document.querySelector('.toggle-btn-cont #readCheck');
+            
             if(checkBox.checked){
                   checkBox.checked = false;
             }else {
                   checkBox.checked = true;
             };
+
+            checkBox.checked === true ? checkBox = 'Have Read' 
+                                        : checkBox = 'Not Read';
+
+            library.map((obj) => {
+                  if(obj.title === target.parentNode.parentNode.parentNode.querySelector('p').innerText) {
+                        obj.readStatus = checkBox;
+                        target.parentNode.parentNode.parentNode.querySelector('p:nth-child(4)').innerText = `Status: ${obj.readStatus}`;
+                        return;
+                  };
+            });
       }
 });
 
