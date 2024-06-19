@@ -1,16 +1,20 @@
 const library = [];
 
-class Book {
-      constructor(title, author, pageCount, readStatus) {
-            this.title = title;
-            this.author = author;
-            this.pageCount = pageCount;
-            this.readStatus = readStatus;
-      }
+function Book(title, author, pageCount, readStatus) {
+      this.title = title;
+      this.author = author;
+      this.pageCount = pageCount;
+      this.readStatus = readStatus;
 }
 
 function addBookToLibrary(title, author, pageCount, readStatus) {
       library.push(new Book(title, author, pageCount, readStatus));
+}
+
+function setMultAttrs(element, attrs) {
+      for(var key in attrs) {
+        element.setAttribute(key, attrs[key]);
+      }
 }
 
 const container = document.querySelector('.cards-container');
