@@ -1,176 +1,139 @@
 * {
-      box-sizing: border-box;
-      padding: 0;
-      margin: 0;
-      list-style-type: none;
-      list-style: none;
-      font-family: 'Poetsen One', sans-serif;
-      font-weight: 200;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+  list-style: none;
+  font-family: "Poetsen One", sans-serif;
+  font-weight: 200;
 }
 
+/* General */
 body {
-      height: 100vh;
-      background: url(./background.svg);
+  background: #f5f1e3;
+  display: grid;
+  grid-template: 10% 90% / 20% 80%;
 }
 
-header {
-      height: 180px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+h1 {
+  font-size: 64px;
+  text-align: center;
+  line-height: 100px;
+  color: #d35400;
+  position: absolute;
+  left: 60%;
+  transform: translate(-60%, 0);
 }
 
-/* card styles */
-
-.card, .add-card{
-      background-color: #fff;
-      width: 320px;
-      height: 180px;
-      padding: 20px;
-      border: 2px solid #000;
-      border-radius: 8px;
+/* User Input */
+h2 {
+  color: #f1c40f;
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 1rem;
 }
 
-.card > *:not(div){
-      margin-bottom: 6px;
+aside {
+  background: #d35400;
+  /* width: 20%; */
+  height: 99vh;
+  padding: 1rem;
+  border-radius: 24px;
+  margin: 4px;
+  grid-row: 1 / span 2;
 }
 
-div.buttons{
-      margin-top: 22px;
-      display: grid;
-      grid-auto-flow: column;
-      grid-template-columns: 1fr 1fr 4fr;
-      gap: 10px;
+form {
+  display: flex;
+  flex-direction: column;
 }
 
-.buttons > button{
-      background-color: none;
-      background: none;
-      border: none;
-      font-size: 1em;
-      cursor: pointer;
-      justify-self: start;
+label {
+  color: #f1c40f;
+  font-size: 1.25rem;
+  text-align: start;
+  margin-bottom: 2px;
 }
 
-.cards-container {
-      width: 100%;
-      gap: 20px;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, 320px);
-      justify-content: center;
+form > input {
+  line-height: 1.5rem;
+  font-size: 1rem;
+  padding: 6px;
+  border: none;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+input:focus,
+input:active {
+  outline: none;
+}
+
+input#bookPages {
+  width: 120px;
+}
+
+input#bookStatus {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+form > div {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+form > button#addBtn {
+  background-color: #f1c40f;
+  color: #d35400;
+  font-size: 1.25rem;
+  width: fit-content;
+  padding: 0.5rem 4rem;
+  border: none;
+  border-radius: 4px;
+  align-self: center;
+  cursor: pointer;
+}
+
+form > button#addBtn:hover {
+  background-color: transparent;
+  color: #f1c40f;
+  outline: 2px solid #f1c40f;
+}
+
+/* Cards Section */
+main.cards-container {
+  margin: 4px 6px 6px 4px;
+  border-radius: 24px;
+  outline: 2px solid red;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.card {
+  background-color: #fff;
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 
 /* add card button */
 
 button.add-card {
-      background-color: rgba(202, 202, 202, 0.521);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      cursor: pointer;
+  background-color: rgba(202, 202, 202, 0.521);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 button.add-card:hover {
-      background-color: #ffffff;
+  background-color: #ffffff;
 }
 
 img[alt="plus icon"] {
-      width: 48px;
-      height: 48px;
+  width: 48px;
+  height: 48px;
 }
-
-/* toggle button */
-
-label.toggle-btn {
-      background-color: #cacaca;
-      width: 36px;
-      height: 16px;
-      border-radius: 18px;
-      display: inline-block;
-      cursor: pointer;
-      position: relative;
-      transition: 0.2s;
-}
-
-.toggle-btn::before {
-      position: absolute;
-      content: '';
-      background-color: #fff;
-      width: 14px;
-      height: 14px;
-      border-radius: 50%;
-      margin: 1px;
-      transition: 0.2s;
-}
-
-input:checked + .toggle-btn {
-      background-color: #4658ff;
-}
-
-input:checked + .toggle-btn::before {
-      transform: translateX(20px);
-}
-
-input[id^='readCheck'] {
-      display: none;
-}
-
-/* toggle button in card */
-
-.toggle-btn-cont {
-      justify-self: end;
-}
- 
-/* dialog styles */
-
-dialog {
-      margin: auto;
-      padding: 20px;
-      width: 600px;
-}
-
-dialog > h2 {
-      text-align: center;
-}
-
-form label {
-      font-size: 1.4rem;
-      display: block;
-}
-
-form > input {
-      font-size: 1rem;
-      width: 100%;
-      padding: 4px;
-      margin: 4px 0;
-}
-
-form > input[type="number"] {
-      width: 20%;
-}
-
-dialog > form > div.toggle-btn-cont {
-      height: 26px;
-      display: flex;
-      align-items: flex-end;
-}
-
-dialog button {
-      width: 74px;
-      height: 26px;
-}
-
-dialog label[for="readCheck"] {
-      line-height: 18px;
-}
-
-form > div:last-child{
-      margin-top: 16px;
-}
-
-form > div > button:first-of-type {
-      margin-right: 8px;
-}
-
-
-
