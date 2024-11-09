@@ -177,22 +177,3 @@ span.numPages {
   color: #333333;
   outline: 2px solid #f1c40f;
 }
-
-/* add card button */
-
-button.add-card {
-  background-color: rgba(202, 202, 202, 0.521);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-}
-
-button.add-card:hover {
-  background-color: #ffffff;
-}
-
-img[alt="plus icon"] {
-  width: 48px;
-  height: 48px;
-}
