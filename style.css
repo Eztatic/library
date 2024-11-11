@@ -13,7 +13,7 @@ body {
   background: #f5f1e3;
   max-height: 100vh;
   display: grid;
-  grid-template: 10% 90% / 20% 80%;
+  grid-template: 100px 90% / 20% 80%;
 }
 
 h1 {
