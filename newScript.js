@@ -27,8 +27,8 @@ const deleteBook = (id) => {
 };
 
 // UI
-
-const createBookUI = (bookTitle, bookAuthor, bookPages, bookStatus) => {
+const createBookUI = (id, bookTitle, bookAuthor, bookPages, bookStatus) => {
+  const bookID = id;
   const cardContainer = document.querySelector(".cards-container");
   const card = document.createElement("div");
   const title = document.createElement("p");
@@ -52,7 +52,7 @@ const createBookUI = (bookTitle, bookAuthor, bookPages, bookStatus) => {
   author.innerText = bookAuthor;
   pages.innerText = bookPages;
   pageLabel.innerText = "Pages";
-  statusBtn.innerText = bookStatus;
+  statusBtn.innerText = `Mark as ${bookStatus}`;
   deleteBtn.innerText = "Remove";
 
   card.appendChild(title);
@@ -64,6 +64,16 @@ const createBookUI = (bookTitle, bookAuthor, bookPages, bookStatus) => {
   card.appendChild(statusBtn);
   card.appendChild(deleteBtn);
   cardContainer.appendChild(card);
+
+  // statusBtn.addEventListener("click", () => {
+  //   toggleStatus(bookID, bookStatus);
+  //   statusBtn.innerText = `Mark as ${bookStatus}`;
+  // });
+
+  deleteBtn.addEventListener("click", () => {
+    deleteBook(bookID);
+    deleteBtn.parentElement.remove();
+  });
 };
 
 const getUserInput = () => {
@@ -128,8 +138,8 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (!bookPages.checkValidity()) {
       bookPages.reportValidity();
     } else {
-      createBook(...getUserInput());
-      createBookUI(...getUserInput());
+      const id = createBook(...getUserInput());
+      createBookUI(id, ...getUserInput());
       document.querySelector("form").reset();
     }
   });
