@@ -11,14 +11,10 @@ const getBook = (index) => {
   return shelve[index];
 };
 
-const toggleStatus = (id, newStatus) => {
+const toggleStatus = (id) => {
   const index = shelve.findIndex((book) => book.id === id);
-  if (newStatus === "Read") {
-    newStatus = "Unread";
-  } else {
-    newStatus = "Read";
-  }
-  shelve[index].status = newStatus;
+  shelve[index].status = shelve[index].status === "Read" ? "Unread" : "Read";
+  return shelve[index].status;
 };
 
 const deleteBook = (id) => {
@@ -65,10 +61,10 @@ const createBookUI = (id, bookTitle, bookAuthor, bookPages, bookStatus) => {
   card.appendChild(deleteBtn);
   cardContainer.appendChild(card);
 
-  // statusBtn.addEventListener("click", () => {
-  //   toggleStatus(bookID, bookStatus);
-  //   statusBtn.innerText = `Mark as ${bookStatus}`;
-  // });
+  statusBtn.addEventListener("click", () => {
+    const changeStatus = toggleStatus(bookID);
+    statusBtn.innerText = `Mark as ${changeStatus}`;
+  });
 
   deleteBtn.addEventListener("click", () => {
     deleteBook(bookID);
