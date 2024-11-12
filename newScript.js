@@ -1,5 +1,9 @@
 // Logic
-const shelve = [];
+const shelve = JSON.parse(localStorage.getItem("shelve")) || [];
+
+const updateShelve = () => {
+  localStorage.setItem("shelve", JSON.stringify(shelve));
+};
 
 const createBook = (title, author, pages, status) => {
   const book = { id: crypto.randomUUID(), title, author, pages, status };
@@ -7,24 +11,26 @@ const createBook = (title, author, pages, status) => {
   return book.id;
 };
 
-const getBook = (index) => {
-  return shelve[index];
-};
-
 const toggleStatus = (id) => {
-  const index = shelve.findIndex((book) => book.id === id);
-  shelve[index].status = shelve[index].status === "Read" ? "Unread" : "Read";
+  const index = bookIndex(id);
+  shelve[index].status = revertBookStatus(shelve[index].status);
   return shelve[index].status;
 };
 
 const deleteBook = (id) => {
-  const index = shelve.findIndex((book) => book.id === id);
-  shelve.splice(index, 1);
+  shelve.splice(bookIndex(id), 1);
+};
+
+const bookIndex = (id) => {
+  return shelve.findIndex((book) => book.id === id);
+};
+
+const revertBookStatus = (currentStatus) => {
+  return currentStatus === "Read" ? "Unread" : "Read";
 };
 
 // UI
 const createBookUI = (id, bookTitle, bookAuthor, bookPages, bookStatus) => {
-  const bookID = id;
   const cardContainer = document.querySelector(".cards-container");
   const card = document.createElement("div");
   const title = document.createElement("p");
@@ -48,7 +54,7 @@ const createBookUI = (id, bookTitle, bookAuthor, bookPages, bookStatus) => {
   author.innerText = bookAuthor;
   pages.innerText = bookPages;
   pageLabel.innerText = "Pages";
-  statusBtn.innerText = `Mark as ${bookStatus}`;
+  statusBtn.innerText = `Mark as ${revertBookStatus(bookStatus)}`;
   deleteBtn.innerText = "Remove";
 
   card.appendChild(title);
@@ -62,13 +68,15 @@ const createBookUI = (id, bookTitle, bookAuthor, bookPages, bookStatus) => {
   cardContainer.appendChild(card);
 
   statusBtn.addEventListener("click", () => {
-    const changeStatus = toggleStatus(bookID);
-    statusBtn.innerText = `Mark as ${changeStatus}`;
+    let changeStatus = toggleStatus(id);
+    statusBtn.innerText = `Mark as ${revertBookStatus(changeStatus)}`;
+    updateShelve();
   });
 
   deleteBtn.addEventListener("click", () => {
-    deleteBook(bookID);
+    deleteBook(id);
     deleteBtn.parentElement.remove();
+    updateShelve();
   });
 };
 
@@ -82,8 +90,14 @@ const getUserInput = () => {
   return [bookTitle.value, bookAuthor.value, bookPages.value, bookStatus];
 };
 
+const addBook = (inputs) => {
+  const id = createBook(...inputs);
+  createBookUI(id, ...inputs);
+  updateShelve();
+};
+
 // Validation
-document.addEventListener("DOMContentLoaded", () => {
+const formValidation = () => {
   const submitBtn = document.querySelector("#addBtn");
   const bookTitle = document.querySelector("#bookTitle");
   const bookAuthor = document.querySelector("#bookAuthor");
@@ -134,13 +148,21 @@ document.addEventListener("DOMContentLoaded", () => {
     } else if (!bookPages.checkValidity()) {
       bookPages.reportValidity();
     } else {
-      const id = createBook(...getUserInput());
-      createBookUI(id, ...getUserInput());
+      addBook(getUserInput());
       document.querySelector("form").reset();
     }
   });
-});
+};
 
-// TEST
-// createBook("Title 1", "Author 1", 1, "Read");
-// createBook("Title 2", "Author 2", 2, "Unread");
+document.addEventListener("DOMContentLoaded", () => {
+  formValidation();
+  if (shelve.length === 0) {
+    const defaultBook = ["Think and Grow Rich", "Napoleon Hill", "238", "Read"];
+    addBook(defaultBook);
+    updateShelve();
+  } else {
+    JSON.parse(localStorage.getItem("shelve")).forEach((book) => {
+      createBookUI(...Object.values(book));
+    });
+  }
+});
